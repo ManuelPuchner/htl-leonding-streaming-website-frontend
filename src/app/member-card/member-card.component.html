@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-header>
+    <div class="member-card__image">
+      <img src="https://via.placeholder.com/150" alt="Member Image">
+    </div>
+    <mat-card-title>
+      <h1>{{member.name}}</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="member-card">
+      <div class="member-card__info">
+        <div>
+          <p>Tags:</p>
+          <div class="tags-wrapper">
+            <!-- [ngStyle]="{'background': 'red'}" -->
+            <div class="tag bg-color-primary" matRipple *ngFor="let tag of member.tags" role="listitem">{{tag.name}}</div>
+          </div>
+        </div>
+        <!-- <p>Member Description</p> -->
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

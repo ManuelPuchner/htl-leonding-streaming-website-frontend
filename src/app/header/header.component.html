@@ -1,3 +1,12 @@
 <mat-toolbar color="primary">
   <span>Streaming-Team-Website</span>
+  <span class="spacer"></span>
+  <a mat-mini-fab routerLink="admin" routerLinkActive="admin-active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}"
+    class="login-link link" color="primary">
+    <mat-icon color="primary">login</mat-icon>
+  </a>
+  <a mat-button routerLink="" routerLinkActive="home-active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}"
+    class="home-link link" color="primary">
+    Home
+  </a>
 </mat-toolbar>

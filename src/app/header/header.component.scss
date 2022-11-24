@@ -1,0 +1,31 @@
+mat-toolbar {
+  display: flex;
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .login-link {
+    background: #fff;
+    font-size: 1em;
+  }
+
+  .login-link.active {
+    background: #eee;
+  }
+
+  .admin-active {
+    display: none;
+    // background-color: red;
+  }
+
+  .home-active {
+    display: none;
+    // background-color: red;
+  }
+
+  .link {
+    color: #fff;
+  }
+}
+
