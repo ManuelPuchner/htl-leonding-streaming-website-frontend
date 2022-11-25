@@ -20,7 +20,9 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { MemberCardComponent } from './member-card/member-card.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatRippleModule } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -44,8 +46,12 @@ import { MatRippleModule } from '@angular/material/core';
     MatCardModule,
     MatChipsModule,
     MatRippleModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    CookieService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

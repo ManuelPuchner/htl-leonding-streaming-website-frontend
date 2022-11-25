@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Member } from '../member';
-import { getMembersMock } from './member-mock';
+import { Team } from '../team';
+import { getTeamsMock } from './team_mock';
 
 @Component({
   selector: 'app-home-page',
@@ -8,11 +9,12 @@ import { getMembersMock } from './member-mock';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  members!: Member[];
+  teams!: Team[];
+
 
   constructor() {}
 
   async ngOnInit() {
-    this.members = await getMembersMock();
+    this.teams = await getTeamsMock();
   }
 }
