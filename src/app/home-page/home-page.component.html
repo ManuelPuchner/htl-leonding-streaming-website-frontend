@@ -1,9 +1,6 @@
-<h1>Our Teams:</h1>
+<h1>Our Members:</h1>
 <div>
-  <div class="" *ngFor="let team of teams">
-    <h2>{{team.name}}</h2>
-    <div class="member-card-wrapper">
-      <app-member-card *ngFor="let member of team.members" [member]="member"></app-member-card>
-    </div>
+  <div class="member-card-wrapper">
+    <app-member-card *ngFor="let member of members" [member]="member"></app-member-card>
   </div>
 </div>

@@ -23,6 +23,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CookieService } from 'ngx-cookie-service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,8 @@ import { CookieService } from 'ngx-cookie-service';
     MatRippleModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [
     CookieService,
