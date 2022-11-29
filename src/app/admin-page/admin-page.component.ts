@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../auth.service';
@@ -11,7 +12,10 @@ export class AdminPageComponent {
   passwordForm;
   authService;
 
-  constructor(authService: AuthService, private formBuilder: FormBuilder) {
+  constructor(
+    authService: AuthService,
+    private formBuilder: FormBuilder
+  ) {
     this.authService = authService;
     this.passwordForm = this.formBuilder.group({
       password: '',
@@ -19,9 +23,8 @@ export class AdminPageComponent {
   }
 
   onSubmit() {
-    //TODO: actually check the password
-    if (this.passwordForm.value.password === '') {
-      this.authService.login();
-    }
+    let password = <string>this.passwordForm.value.password;
+    this.authService.login(password);
   }
+
 }
