@@ -21,9 +21,13 @@ import { MemberCardComponent } from './member-card/member-card.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatRippleModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ColorPickerModule } from 'ngx-color-picker';
+
 
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
+import { TagSelectorComponent } from './tag-selector/tag-selector.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     AdminPageComponent,
     HomePageComponent,
     MemberCardComponent,
+    TagSelectorComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,11 +55,11 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    MatAutocompleteModule,
+    ColorPickerModule,
   ],
-  providers: [
-    CookieService,
-  ],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

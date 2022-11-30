@@ -17,7 +17,6 @@ export class HomePageComponent implements OnInit {
     // this.teams = await getTeamsMock();
     this.http.get<Member[]>('/api/member').subscribe((members) => {
       this.members = members;
-      console.log(this.members);
     });
   }
 }

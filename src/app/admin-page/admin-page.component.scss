@@ -1,5 +1,16 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+}
+
+.main-wrapper {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+
+mat-chip mat-icon {
+  color: var(--mdc-chip-label-text-color);
 }
