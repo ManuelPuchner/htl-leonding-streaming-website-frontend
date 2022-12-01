@@ -6,6 +6,13 @@
   min-height: 100vh;
 }
 
+.home-screen {
+  background-image: url('/assets/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 main {
   width: 90%;

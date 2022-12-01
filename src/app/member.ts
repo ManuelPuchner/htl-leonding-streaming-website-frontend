@@ -1,7 +1,10 @@
 import { Tag } from "./tag";
 
 export interface Member {
-  id: number;
+  id?: number;
   name: string | null;
-  tags: Tag[];
+  description: string | null;
+  image: string | null;
+  tags?: Tag[];
+  tagIds?: number[];
 }

@@ -1,24 +1,41 @@
-<mat-card>
+<mat-card [class]="small ? 'small' : ''">
   <mat-card-header>
     <div class="member-card__image">
       <img src="https://via.placeholder.com/150" alt="Member Image">
     </div>
-    <mat-card-title>
+    <mat-card-title *ngIf="!small">
       <h1>{{member.name}}</h1>
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <div class="member-card">
+      <mat-card-title *ngIf="small">
+        <h1>{{member.name}}</h1>
+      </mat-card-title>
       <div class="member-card__info">
+        <p *ngIf="!small">{{member.description}}</p>
         <div>
-          <p>Tags:</p>
           <div class="tags-wrapper">
-            <!-- [ngStyle]="{'background': 'red'}" -->
-            <div class="tag bg-color-primary" matRipple *ngFor="let tag of member.tags" role="listitem">{{tag.name}}</div>
+            <div
+              class="tag"
+              matRipple
+              *ngFor="let tag of member.tags"
+              role="listitem"
+              [ngStyle]="{'background-color': tag.color || '#f5f5f5', 'color': pickTextColorBasedOnBgColorAdvanced(tag.color, '#ffffff', '#000000') }"
+            >
+              {{tag.name}}
+            </div>
           </div>
         </div>
-        <!-- <p>Member Description</p> -->
       </div>
     </div>
+    <mat-card-actions *ngIf="adminMode" align="end">
+      <button mat-button color="primary" (click)="editAction()">Edit
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-button color="warn" (click)="deleteAction()">Delete
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
   </mat-card-content>
 </mat-card>

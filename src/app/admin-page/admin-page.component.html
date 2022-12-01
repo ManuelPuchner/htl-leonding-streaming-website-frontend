@@ -1,8 +1,5 @@
-<div *ngIf="authService.isAuthenticated; else loggedOut">
+<div *ngIf="authService.isAuthenticated; else loggedOut" class="admin-page">
   <p>admin-page works!</p>
-
-
-
 
   <div class="main-wrapper">
     <div>
@@ -26,6 +23,18 @@
         <app-tag-selector (tagsChangedEvent)="updateTags($event)"></app-tag-selector>
         <button mat-raised-button color="primary" type="submit">Submit</button>
       </form>
+
+      <div>
+        <h2>Members</h2>
+        <div class="members-cards-wrapper">
+          <app-member-card
+            *ngFor="let member of members"
+            [member]="member"
+            [small]="true"
+            [adminMode]="true"
+          ></app-member-card>
+        </div>
+      </div>
     </div>
 
     <div>
@@ -37,7 +46,14 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Color</mat-label>
-          <input matInput type="text" cpAlphaChannel="disabled"  (colorPickerSelect)="colorChange($event)" [(colorPicker)]="tagColor" formControlName="color">
+          <input
+            matInput
+            type="text"
+            cpAlphaChannel="disabled"
+            (colorPickerSelect)="colorChange($event)"
+            [(colorPicker)]="tagColor"
+            formControlName="color"
+          >
         </mat-form-field>
 
         <button mat-raised-button color="primary" type="submit">Submit</button>
@@ -45,7 +61,10 @@
       <div>
         <h2>Tags</h2>
         <mat-chip-listbox aria-label="Dog selection">
-          <mat-chip *ngFor="let tag of tags" [ngStyle]="{'--mdc-chip-elevated-container-color': tag.color || '#f5f5f5', '--mdc-chip-label-text-color': pickTextColorBasedOnBgColorAdvanced(tag.color, '#ffffff', '#000000') }">
+          <mat-chip
+            *ngFor="let tag of tags"
+            [ngStyle]="{'--mdc-chip-elevated-container-color': tag.color || '#f5f5f5', '--mdc-chip-label-text-color': pickTextColorBasedOnBgColorAdvanced(tag.color, '#ffffff', '#000000') }"
+          >
             {{tag.name}}
             <button matChipRemove (click)="removeTag(tag)">
               <mat-icon>cancel</mat-icon>

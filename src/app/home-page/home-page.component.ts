@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Member } from '../member';
-import { Team } from '../team';
-import { getTeamsMock } from './team_mock';
+import { MemberService } from '../member.service';
 
 @Component({
   selector: 'app-home-page',
@@ -11,11 +9,10 @@ import { getTeamsMock } from './team_mock';
 })
 export class HomePageComponent implements OnInit {
   members!: Member[]
-  constructor(private http: HttpClient) {}
+  constructor(private memberService: MemberService) {}
 
   async ngOnInit() {
-    // this.teams = await getTeamsMock();
-    this.http.get<Member[]>('/api/member').subscribe((members) => {
+    this.memberService.getMembers().subscribe((members) => {
       this.members = members;
     });
   }

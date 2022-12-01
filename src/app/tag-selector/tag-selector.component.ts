@@ -1,13 +1,14 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
-import { filter, map, startWith, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Tag } from '../tag';
 import { TagService } from '../tag.service';
+import { pickTextColorBasedOnBgColorAdvanced } from '../colorUtil';
+
 
 @Component({
   selector: 'app-tag-selector',
@@ -31,7 +32,9 @@ export class TagSelectorComponent {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       map((tag) => {
         if (typeof tag === 'string') {
-          return this.allTags.filter((t) => t.name.toLowerCase().includes(tag.toLowerCase()));
+          return this.allTags.filter((t) =>
+            t.name.toLowerCase().includes(tag.toLowerCase())
+          );
         } else {
           return this.allTags;
         }
@@ -47,7 +50,7 @@ export class TagSelectorComponent {
     const tagName = (event.value || '').trim();
 
     if (tagName) {
-      alert("not implemented");
+      alert('not implemented');
     }
 
     // Clear the input value
@@ -67,6 +70,11 @@ export class TagSelectorComponent {
     this.onTagsChanged();
   }
 
+  reset() {
+    this.tags = [];
+    this.onTagsChanged();
+  }
+
   onTagsChanged() {
     this.tagsChangedEvent.emit(this.tags);
   }
@@ -78,5 +86,13 @@ export class TagSelectorComponent {
     this.tagCtrl.setValue(null);
 
     this.onTagsChanged();
+  }
+
+  pickTextColorBasedOnBgColorAdvanced(
+    bgColor: string,
+    lightColor: string,
+    darkColor: string
+  ) {
+    return pickTextColorBasedOnBgColorAdvanced(bgColor, lightColor, darkColor);
   }
 }
