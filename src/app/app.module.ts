@@ -28,6 +28,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
 import { TagSelectorComponent } from './tag-selector/tag-selector.component';
+import { MemberPageComponent } from './member-page/member-page.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { TagSelectorComponent } from './tag-selector/tag-selector.component';
     HomePageComponent,
     MemberCardComponent,
     TagSelectorComponent,
+    MemberPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { MemberPageComponent } from './member-page/member-page.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,11 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminPageComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'member',
+    component: MemberPageComponent,
     pathMatch: 'full',
   },
 ];

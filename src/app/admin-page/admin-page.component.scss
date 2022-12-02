@@ -14,3 +14,13 @@
 mat-chip mat-icon {
   color: var(--mdc-chip-label-text-color);
 }
+
+
+mat-chip .delete-icon {
+  color: var(--mdc-chip-label-text-color);
+
+}
+
+mat-chip button:hover .delete-icon {
+  color: rgba(255, 0, 0, 0.95);
+}
