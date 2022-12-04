@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streaming
+  namespace: student-m-puchner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: streaming
+  template:
+    metadata:
+      labels:
+        app: streaming
+    spec:
+      containers:
+        - name: streaming
+          image: ghcr.io/manuelpuchner/streaming-htl-website:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streaming-svc
+  namespace: student-m-puchner
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: streaming
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: streaming
+  namespace: student-m-puchner
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: student.cloud.htl-leonding.ac.at
+      http:
+        paths:
+          - path: /m.puchner/streaming(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: streaming-svc
+                port:
+                  number: 80
