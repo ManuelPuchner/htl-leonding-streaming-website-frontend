@@ -14,7 +14,7 @@ export class AuthService {
 
   login(password: string) {
     this.http
-      .post('/api/admin/login', { password }, { observe: 'response' })
+      .post('/admin/login', { password }, { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
           this.isAuthenticated = true;

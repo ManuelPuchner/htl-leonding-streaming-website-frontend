@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,9 +26,31 @@ import { ColorPickerModule } from 'ngx-color-picker';
 
 
 import { CookieService } from 'ngx-cookie-service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TagSelectorComponent } from './tag-selector/tag-selector.component';
 import { MemberPageComponent } from './member-page/member-page.component';
+
+
+import { Injectable } from '@angular/core';
+import {
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+} from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable()
+export class ApiInterceptor implements HttpInterceptor {
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    const baseUrl = isDevMode() ? 'http://localhost:3000/api' : '/m.puchner/streaming/api';
+    const apiReq = req.clone({ url: `${baseUrl}${req.url}` });
+    return next.handle(apiReq);
+  }
+}
 
 @NgModule({
   declarations: [
@@ -61,7 +83,11 @@ import { MemberPageComponent } from './member-page/member-page.component';
     MatAutocompleteModule,
     ColorPickerModule,
   ],
-  providers: [CookieService],
+  providers: [CookieService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ApiInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -32,8 +32,6 @@ export class AdminPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private tagService: TagService,
     private memberService: MemberService,
-    private cpService: ColorPickerService,
-    private http: HttpClient
   ) {
     this.authService = authService;
     this.passwordForm = this.formBuilder.group({

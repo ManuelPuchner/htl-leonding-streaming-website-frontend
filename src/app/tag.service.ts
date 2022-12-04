@@ -11,7 +11,7 @@ export class TagService {
   array$: Observable<Tag[]> = this.tags.asObservable();
 
   constructor(private http: HttpClient) {
-    http.get<Tag[]>('/api/tag').subscribe((tags) => {
+    http.get<Tag[]>('/tag').subscribe((tags) => {
       this.tags.next(tags);
     });
   }
@@ -22,7 +22,7 @@ export class TagService {
 
   addTag(tag: Tag) {
     this.http
-      .post<Tag>('/api/tag', tag, { observe: 'response' })
+      .post<Tag>('/tag', tag, { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
           this.array$.pipe(take(1)).subscribe((tags) => {
@@ -36,7 +36,7 @@ export class TagService {
 
   removeTag(tag: Tag) {
     this.http
-      .delete(`/api/tag/${tag.id}`, { observe: 'response' })
+      .delete(`/tag/${tag.id}`, { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
           this.array$.pipe(take(1)).subscribe((tags) => {
