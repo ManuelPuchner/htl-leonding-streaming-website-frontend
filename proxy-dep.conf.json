@@ -1,6 +1,0 @@
-{
-  "/api": {
-    "target": "/m.puchner/streaming/api",
-    "secure": false
-  }
-}
