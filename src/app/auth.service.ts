@@ -13,9 +13,15 @@ export class AuthService {
   }
 
   login(password: string) {
+    console.log('login');
+
     this.http
-      .post('/admin/login', { password }, { observe: 'response' })
+      .post('/admin/login', { password }, { observe: 'response', withCredentials: true })
       .subscribe((response) => {
+        console.log("response", response);
+        if(response.status === 401) {
+          alert("Wrong password");
+        }
         if (response.status === 200) {
           this.isAuthenticated = true;
         }

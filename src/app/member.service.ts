@@ -22,7 +22,10 @@ export class MemberService {
 
   addMember(member: Member) {
     this.http
-      .post<Member>('/member', member, { observe: 'response' })
+      .post<Member>('/member', member, {
+        observe: 'response',
+        withCredentials: true,
+      })
       .subscribe((response) => {
         if (response.status === 200) {
           this.array$.pipe(take(1)).subscribe((members) => {
@@ -36,7 +39,10 @@ export class MemberService {
 
   removeMember(member: Member) {
     this.http
-      .delete(`/member/${member.id}`, { observe: 'response' })
+      .delete(`/member/${member.id}`, {
+        observe: 'response',
+        withCredentials: true,
+      })
       .subscribe((response) => {
         if (response.status === 200) {
           this.array$.pipe(take(1)).subscribe((members) => {

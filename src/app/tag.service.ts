@@ -22,11 +22,11 @@ export class TagService {
 
   addTag(tag: Tag) {
     this.http
-      .post<Tag>('/tag', tag, { observe: 'response' })
+      .post<Tag>('/tag', tag, { observe: 'response', withCredentials: true })
       .subscribe((response) => {
         if (response.status === 200) {
           this.array$.pipe(take(1)).subscribe((tags) => {
-            this.tags.next([...tags, <Tag> response.body]);
+            this.tags.next([...tags, <Tag>response.body]);
           });
         } else {
           alert('Error adding tag');
@@ -36,7 +36,7 @@ export class TagService {
 
   removeTag(tag: Tag) {
     this.http
-      .delete(`/tag/${tag.id}`, { observe: 'response' })
+      .delete(`/tag/${tag.id}`, { observe: 'response', withCredentials: true })
       .subscribe((response) => {
         if (response.status === 200) {
           this.array$.pipe(take(1)).subscribe((tags) => {
