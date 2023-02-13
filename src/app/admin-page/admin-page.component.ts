@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Tag } from '../tag';
@@ -8,6 +8,7 @@ import { ColorPickerService } from 'ngx-color-picker';
 import { MemberService } from '../member.service';
 import { Member } from '../member';
 import { pickTextColorBasedOnBgColorAdvanced } from '../colorUtil';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -16,6 +17,11 @@ import { pickTextColorBasedOnBgColorAdvanced } from '../colorUtil';
   styleUrls: ['./admin-page.component.scss'],
 })
 export class AdminPageComponent implements OnInit {
+//TODO: add observable for image
+  @Input()  
+  image: Observable<string> = new Observable<string>();
+
+  
   passwordForm;
   newMemberForm;
   newTagForm;

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-file-upload',
@@ -9,11 +10,11 @@ import { Component } from '@angular/core';
 export class FileUploadComponent {
 
   fileName = '';
-  returnedPath: object = {};
+  returnedPath: string = '';
 
   constructor(private http: HttpClient) {}
 
-  onFileSelected(event: any) {
+  onFileSelected(event: any, imageURL: Observable<string>) {
 
       const file:File = event.target.files[0];
 
@@ -28,12 +29,18 @@ export class FileUploadComponent {
           const upload$ = this.http.post("/image", formData);
 
           upload$.subscribe((data: any) => {
-              this.returnedPath = data.path;
+              this.returnedPath = "/api/image/" + data.path.filename;
               console.log(this.returnedPath);
-              
           });
           
       }
+
+      return this.returnedPath;
+  }
+
+  //get image from server
+  getImage(returnedPath: string) {
+      return this.http.get(returnedPath);
   }
 }
 
