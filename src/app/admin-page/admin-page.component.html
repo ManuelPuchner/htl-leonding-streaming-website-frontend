@@ -15,10 +15,9 @@
           <input matInput type="text" formControlName="description">
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Image</mat-label>
-          <input matInput type="text" formControlName="image">
-        </mat-form-field>
+        <app-file-upload
+          formControlName="image"
+        ></app-file-upload>
 
         <app-tag-selector (tagsChangedEvent)="updateTags($event)"></app-tag-selector>
         <button mat-raised-button color="primary" type="submit">Submit</button>
@@ -60,7 +59,7 @@
       </form>
       <div>
         <h2>Tags</h2>
-        <mat-chip-listbox aria-label="Dog selection">
+        <mat-chip-listbox aria-label="label selection">
           <mat-chip
             *ngFor="let tag of tags"
             [ngStyle]="{'--mdc-chip-elevated-container-color': tag.color || '#f5f5f5', '--mdc-chip-label-text-color': pickTextColorBasedOnBgColorAdvanced(tag.color, '#ffffff', '#000000') }"

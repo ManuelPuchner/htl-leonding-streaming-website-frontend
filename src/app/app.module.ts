@@ -39,6 +39,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
@@ -62,6 +63,8 @@ export class ApiInterceptor implements HttpInterceptor {
     MemberCardComponent,
     TagSelectorComponent,
     MemberPageComponent,
+    FileUploadComponent
+    
   ],
   imports: [
     BrowserModule,
