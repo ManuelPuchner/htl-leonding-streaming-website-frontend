@@ -17,9 +17,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./admin-page.component.scss'],
 })
 export class AdminPageComponent implements OnInit {
-//TODO: add observable for image
-  @Input()  
-  image: Observable<string> = new Observable<string>();
+
+  imageUrl!: string
 
   
   passwordForm;
@@ -117,5 +116,12 @@ export class AdminPageComponent implements OnInit {
 
   editMember(member: Member) {
     console.log('edit member', member);
+  }
+
+  handleImageEvent(event: any) {
+    console.log("handleImageEvent");
+    console.log(event);
+    
+    this.imageUrl = event;
   }
 }

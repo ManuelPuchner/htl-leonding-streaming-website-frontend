@@ -17,6 +17,7 @@
 
         <app-file-upload
           formControlName="image"
+          (imageUrlEvent)="handleImageEvent($event)"
         ></app-file-upload>
 
         <app-tag-selector (tagsChangedEvent)="updateTags($event)"></app-tag-selector>

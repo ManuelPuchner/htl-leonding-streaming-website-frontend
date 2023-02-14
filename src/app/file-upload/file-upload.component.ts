@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,12 +9,15 @@ import { Observable } from 'rxjs';
 })
 export class FileUploadComponent {
 
+  @Output()
+  imageUrlEvent = new EventEmitter<string>();
+
   fileName = '';
   returnedPath: string = '';
 
   constructor(private http: HttpClient) {}
 
-  onFileSelected(event: any, imageURL: Observable<string>) {
+  onFileSelected(event: any) {
 
       const file:File = event.target.files[0];
 
@@ -30,12 +33,12 @@ export class FileUploadComponent {
 
           upload$.subscribe((data: any) => {
               this.returnedPath = "/api/image/" + data.path.filename;
-              console.log(this.returnedPath);
+              // console.log(this.returnedPath);
+
+              this.imageUrlEvent.emit(this.returnedPath);
           });
           
       }
-
-      return this.returnedPath;
   }
 
   //get image from server
