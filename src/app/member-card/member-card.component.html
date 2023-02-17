@@ -1,13 +1,13 @@
 <mat-card [class]="small ? 'small' : ''">
   <mat-card-header>
     <div class="member-card__image">
-      <img src="https://via.placeholder.com/150" alt="Member Image">
+      <img [src]="member.image" alt="Member Image">
     </div>
     <mat-card-title *ngIf="!small">
       <h1>{{member.name}}</h1>
     </mat-card-title>
   </mat-card-header>
-  <mat-card-content>
+  <mat-card-content [class]="isAdminPage && 'adminPage'">
     <div class="member-card">
       <mat-card-title *ngIf="small">
         <h1>{{member.name}}</h1>

@@ -5,6 +5,9 @@
     <div>
       <form class="wrapper" [formGroup]="newMemberForm" (submit)="onSubmitMember()">
         <h2>Add new Member</h2>
+
+        <app-file-upload formControlName="image" (imageUrlEvent)="handleImageEvent($event)"></app-file-upload>
+
         <mat-form-field appearance="outline">
           <mat-label>Name</mat-label>
           <input matInput type="text" formControlName="name">
@@ -14,11 +17,6 @@
           <mat-label>Description</mat-label>
           <input matInput type="text" formControlName="description">
         </mat-form-field>
-
-        <app-file-upload
-          formControlName="image"
-          (imageUrlEvent)="handleImageEvent($event)"
-        ></app-file-upload>
 
         <app-tag-selector (tagsChangedEvent)="updateTags($event)"></app-tag-selector>
         <button mat-raised-button color="primary" type="submit">Submit</button>
@@ -32,6 +30,7 @@
             [member]="member"
             [small]="true"
             [adminMode]="true"
+            [isAdminPage]="true"
           ></app-member-card>
         </div>
       </div>

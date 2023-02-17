@@ -20,7 +20,7 @@ export class AdminPageComponent implements OnInit {
 
   imageUrl!: string
 
-  
+
   passwordForm;
   newMemberForm;
   newTagForm;
@@ -119,9 +119,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   handleImageEvent(event: any) {
-    console.log("handleImageEvent");
-    console.log(event);
-    
-    this.imageUrl = event;
+    // event is the image url
+    this.newMemberForm.patchValue({ image: event });
   }
 }

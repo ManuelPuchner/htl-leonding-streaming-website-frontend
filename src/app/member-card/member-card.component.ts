@@ -10,6 +10,10 @@ import { MemberService } from '../member.service';
   styleUrls: ['./member-card.component.scss'],
 })
 export class MemberCardComponent {
+
+  @Input()
+  isAdminPage: boolean = false;
+
   @Input()
   member!: Member;
 

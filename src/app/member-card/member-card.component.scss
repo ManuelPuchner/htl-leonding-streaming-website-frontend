@@ -1,5 +1,6 @@
 mat-card {
   max-width: 100%;
+  position: relative;
 
   p {
     margin: 0 0.5rem 0.5rem 0;
@@ -36,8 +37,21 @@ mat-card {
       }
     }
   }
+
   mat-card-content {
     padding: 0.75em;
+    width: 100%;
+  }
+}
+
+mat-card:has(.adminPage) {
+  mat-card-header {
+    width: 55%;
+    margin: 0 !important;
+  }
+  mat-card-content {
+    transform: translateX(-50%);
+    width:max-content;
   }
 }
 
